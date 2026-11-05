@@ -1,0 +1,514 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap');
+
+:root {
+  --bg: #080d18;
+  --panel: rgba(13, 22, 38, .94);
+  --cyan: #28e0d0;
+  --blue: #3988ff;
+  --white: #f2f7ff;
+  --muted: #91a3bb;
+  --red: #ff526b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: .2s ease;
+}
+
+button:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(.98);
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  color: white;
+  background: #0b1424;
+  border: 1px solid #263b55;
+  border-radius: 7px;
+  outline: none;
+  font-size: 17px;
+}
+
+input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px #28e0d033;
+}
+
+.screen {
+  display: none;
+  position: absolute;
+  inset: 0;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* ANA MENÜ */
+
+#menu {
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 75% 30%, #174c6870, transparent 45%),
+    radial-gradient(ellipse at 20% 90%, #174c8b55, transparent 45%),
+    linear-gradient(135deg, #080d18, #101d32 55%, #07111d);
+}
+
+#menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .13;
+  background-image:
+    linear-gradient(#ffffff12 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff12 1px, transparent 1px);
+  background-size: 45px 45px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.menu-content {
+  position: relative;
+  width: min(460px, 92%);
+  text-align: center;
+  animation: appear .7s ease;
+}
+
+.logo {
+  font-family: Orbitron, sans-serif;
+  font-size: clamp(48px, 9vw, 76px);
+  font-weight: 800;
+  letter-spacing: 7px;
+  text-shadow: 0 0 35px #28e0d055;
+}
+
+.logo span {
+  color: var(--cyan);
+}
+
+.subtitle {
+  color: var(--cyan);
+  letter-spacing: 5px;
+  font-size: 13px;
+  margin-top: 4px;
+  margin-bottom: 35px;
+}
+
+.menu-card {
+  padding: 32px;
+  background: linear-gradient(145deg, #14243aee, #0b1425f5);
+  border: 1px solid #3b5974;
+  border-radius: 14px;
+  box-shadow: 0 25px 80px #0009, inset 0 1px #ffffff12;
+  text-align: left;
+}
+
+.menu-card h1 {
+  font-family: Orbitron, sans-serif;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.menu-card p {
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.menu-card input {
+  margin-bottom: 12px;
+}
+
+.primary {
+  width: 100%;
+  padding: 15px;
+  margin-top: 8px;
+  border-radius: 7px;
+  background: linear-gradient(100deg, #168fbd, #25d7c5);
+  color: #04151c;
+  font-family: Orbitron, sans-serif;
+  font-size: 13px;
+  box-shadow: 0 7px 25px #28e0d033;
+}
+
+.join-row {
+  display: flex;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.join-row input {
+  min-width: 0;
+  text-transform: uppercase;
+}
+
+.join-row button {
+  min-width: 95px;
+  border-radius: 7px;
+  background: #263e5b;
+}
+
+.message {
+  min-height: 22px;
+  margin-top: 12px;
+  color: var(--red);
+  font-size: 15px;
+}
+
+.menu-footer {
+  margin-top: 25px;
+  color: #62778e;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+/* LOBİ */
+
+#lobby {
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 15% 20%, #174e6b55, transparent 35%),
+    linear-gradient(135deg, #080d18, #12223a);
+}
+
+.lobby-panel {
+  width: min(570px, 100%);
+  padding: 30px;
+  background: var(--panel);
+  border: 1px solid #2c526a;
+  border-radius: 14px;
+  box-shadow: 0 25px 80px #0009;
+}
+
+.logo.small {
+  font-size: 32px;
+  letter-spacing: 4px;
+  margin-bottom: 22px;
+}
+
+.lobby-panel h1 {
+  font-family: Orbitron, sans-serif;
+  font-size: 21px;
+  margin-bottom: 20px;
+}
+
+.room-code {
+  padding: 17px;
+  background: #091421;
+  border: 1px solid #29445d;
+  border-radius: 8px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.room-code strong {
+  margin-left: auto;
+  color: var(--cyan);
+  font-family: Orbitron, sans-serif;
+  font-size: 24px;
+  letter-spacing: 4px;
+}
+
+.room-code button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  background: #24435c;
+  font-size: 11px;
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0 10px;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 70px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 7px;
+  background: #14253a;
+  border: 1px solid #263e58;
+  gap: 12px;
+}
+
+.player-avatar {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: #1e6070;
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.player-name {
+  flex: 1;
+  font-weight: 700;
+}
+
+.host-tag {
+  color: #f5cb65;
+  font-size: 12px;
+}
+
+.secondary {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 7px;
+  background: #26374b;
+  color: #cbd7e5;
+}
+
+/* OYUN EKRANI */
+
+#game {
+  background: #101b29;
+  overflow: hidden;
+}
+
+#gameCanvas {
+  position: absolute;
+  inset: 0;
+}
+
+#gameCanvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hud button {
+  pointer-events: auto;
+}
+
+.hud-top {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.hud-box {
+  min-width: 115px;
+  padding: 10px 16px;
+  border: 1px solid #ffffff30;
+  border-radius: 7px;
+  background: #081321d9;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.hud-box span {
+  display: block;
+  color: #9db2c8;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.hud-box strong {
+  display: block;
+  margin-top: 3px;
+  font-family: Orbitron, sans-serif;
+  font-size: 18px;
+}
+
+.timer-box strong {
+  color: var(--cyan);
+}
+
+.ability-panel {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.ability-panel button {
+  min-width: 105px;
+  padding: 12px 15px;
+  border: 1px solid #ffffff30;
+  border-radius: 8px;
+  background: #0a1a2cdd;
+  backdrop-filter: blur(10px);
+  font-family: Orbitron, sans-serif;
+  font-size: 11px;
+}
+
+.ability-panel button small {
+  display: block;
+  color: var(--cyan);
+  margin-top: 5px;
+}
+
+.ability-panel button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.game-message {
+  position: absolute;
+  top: 105px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  border-radius: 6px;
+  background: #071321d9;
+  color: var(--cyan);
+  font-weight: 700;
+  text-align: center;
+}
+
+.controls-hint {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffffff9c;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* SONUÇ */
+
+#result {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    radial-gradient(circle at center, #1c4964, transparent 55%),
+    #080d18;
+}
+
+.result-card {
+  width: min(450px, 90%);
+  padding: 40px;
+  background: #0c1929ee;
+  border: 1px solid #2c536c;
+  border-radius: 14px;
+  box-shadow: 0 25px 80px #0009;
+}
+
+.result-card h1 {
+  margin: 25px 0 12px;
+  font-family: Orbitron, sans-serif;
+  font-size: 27px;
+}
+
+.result-card p {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-card, .lobby-panel {
+    padding: 22px;
+  }
+
+  .hud-top {
+    top: 8px;
+    gap: 5px;
+  }
+
+  .hud-box {
+    min-width: 85px;
+    padding: 8px;
+  }
+
+  .hud-box strong {
+    font-size: 14px;
+  }
+
+  .ability-panel {
+    bottom: 30px;
+    width: 96%;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .ability-panel button {
+    min-width: 0;
+    flex: 1;
+    padding: 11px 4px;
+    font-size: 9px;
+  }
+
+  .controls-hint {
+    font-size: 9px;
+  }
+
+  .room-code {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HIDEOUT | Online Prop Hunt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ANA MENÜ -->
+    <section id="menu" class="screen active">
+      <div class="menu-content">
+        <div class="logo">HIDE<span>OUT</span></div>
+        <p class="subtitle">GİZLEN. DÖNÜŞ. HAYATTA KAL.</p>
+
+        <div class="menu-card">
+          <h1>AVM'YE HOŞ GELDİN</h1>
+          <p>Arkadaşlarınla çevrimiçi Prop Hunt oyna.</p>
+
+          <input id="nickname" maxlength="16" placeholder="Oyuncu adın">
+
+          <button id="createRoom" class="primary">ODA OLUŞTUR</button>
+
+          <div class="join-row">
+            <input id="roomCode" maxlength="5" placeholder="ODA KODU">
+            <button id="joinRoom">KATIL</button>
+          </div>
+
+          <p id="menuMessage" class="message"></p>
+        </div>
+
+        <div class="menu-footer">HIDEOUT ONLINE • BETA</div>
+      </div>
+    </section>
+
+    <!-- LOBİ -->
+    <section id="lobby" class="screen">
+      <div class="lobby-panel">
+        <div class="logo small">HIDE<span>OUT</span></div>
+        <h1>OYUNCU LOBİSİ</h1>
+
+        <div class="room-code">
+          ODA KODU
+          <strong id="displayRoomCode">-----</strong>
+          <button id="copyCode">KOPYALA</button>
+        </div>
+
+        <div class="player-header">
+          <span>OYUNCULAR</span>
+          <span id="playerCount">0/10</span>
+        </div>
+
+        <div id="playerList" class="player-list"></div>
+
+        <p id="lobbyMessage" class="message"></p>
+
+        <button id="startGame" class="primary">OYUNU BAŞLAT</button>
+        <button id="leaveRoom" class="secondary">ODADAN AYRIL</button>
+      </div>
+    </section>
+
+    <!-- OYUN -->
+    <section id="game" class="screen">
+      <div id="gameCanvas"></div>
+
+      <div class="hud">
+        <div class="hud-top">
+          <div class="hud-box">
+            <span>ROLÜN</span>
+            <strong id="roleText">BEKLENİYOR</strong>
+          </div>
+
+          <div class="hud-box timer-box">
+            <span>KALAN SÜRE</span>
+            <strong id="timer">05:00</strong>
+          </div>
+
+          <div class="hud-box">
+            <span>OYUNCULAR</span>
+            <strong id="aliveCount">0</strong>
+          </div>
+        </div>
+
+        <div class="ability-panel">
+          <button id="disguiseBtn">DÖNÜŞ <small>F</small></button>
+          <button id="scanBtn">TARAMA <small>Q</small></button>
+          <button id="rescueBtn">KURTAR <small>E</small></button>
+          <button id="invisibleBtn">GİZLEN <small>R</small></button>
+        </div>
+
+        <div id="gameMessage" class="game-message"></div>
+
+        <div class="controls-hint">
+          WASD: Hareket | SHIFT: Koş | Fare: Kamera | F: Dönüş
+        </div>
+      </div>
+    </section>
+
+    <!-- SONUÇ -->
+    <section id="result" class="screen">
+      <div class="result-card">
+        <div class="logo">HIDE<span>OUT</span></div>
+        <h1 id="resultTitle">OYUN BİTTİ</h1>
+        <p id="resultDescription"></p>
+        <button id="backToLobby" class="primary">LOBİYE DÖN</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="client.js"></script>
+</body>
+</html>
